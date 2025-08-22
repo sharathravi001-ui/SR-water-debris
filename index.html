@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Shoreline Hotspot Finder</title>
+  <meta name="description" content="Draw an area, run the analysis, and download hotspot points (CSV/KML)." />
+  <style>
+    :root{ --bg:#0b1220; --card:#111827; --muted:#9aa4b2; --accent:#22d3ee; --text:#e5e7eb; }
+    html,body{height:100%;margin:0;background:var(--bg);color:var(--text);font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif}
+    .wrap{max-width:1100px;margin:0 auto;padding:28px}
+    .hero{display:flex;gap:16px;align-items:center;flex-wrap:wrap}
+    .tag{background:#0ea5e9;color:#001018;border-radius:999px;padding:4px 10px;font-weight:600;font-size:12px;letter-spacing:.2px}
+    h1{margin:6px 0 4px;font-size:clamp(26px,3.6vw,40px);line-height:1.08}
+    .sub{color:var(--muted);margin-bottom:14px}
+    .card{background:var(--card);border:1px solid #1f2937;border-radius:16px;padding:16px}
+    .grid{display:grid;grid-template-columns:1fr;gap:16px}
+    @media (min-width: 980px){ .grid{grid-template-columns: 2fr 1fr} }
+    .iframe-box{position:relative;width:100%;min-height:70vh;border-radius:14px;overflow:hidden;border:1px solid #1f2937}
+    .iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+    .btn{display:inline-block;background:var(--accent);color:#00222a;padding:10px 14px;border-radius:10px;font-weight:700;text-decoration:none}
+    .btn:focus{outline:2px solid #67e8f9;outline-offset:3px}
+    .list{margin:0;padding-left:18px}
+    .list li{margin:6px 0}
+    code{background:#0f172a;border:1px solid #1e293b;color:#93c5fd;padding:2px 6px;border-radius:6px}
+    a.link{color:#7dd3fc}
+    footer{opacity:.7;margin-top:18px;font-size:13px}
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="hero">
+      <span class="tag">Open Map App</span>
+      <h1>Shoreline Hotspot Finder</h1>
+      <div class="sub">Draw an area on the map, click <em>RUN</em>, and download hotspot points (CSV / KML).</div>
+    </div>
+
+    <div class="grid">
+      <section class="card">
+        <div class="iframe-box" id="frameBox">
+          <iframe class="iframe"
+                  src="https://sharathravi001.users.earthengine.app/view/shoreline-debris-hotspot-finder"
+                  title="Shoreline Hotspot Finder"></iframe>
+        </div>
+        <p style="margin-top:10px">
+          If the app doesn’t load, 
+          <a class="btn" href="https://sharathravi001.users.earthengine.app/view/shoreline-debris-hotspot-finder"
+             target="_blank" rel="noopener">Open in new tab</a>
+        </p>
+      </section>
+
+      <aside class="card">
+        <h3 style="margin-top:0">How to use</h3>
+        <ol class="list">
+          <li>Draw a box or polygon covering your area of interest.</li>
+          <li>Set <strong>Cloud %</strong>, <strong>Threshold</strong>, and <strong>Shoreline distance</strong>.</li>
+          <li>Click <strong>RUN</strong> to see hotspot dots.</li>
+          <li>Click <strong>Generate downloads</strong> to save CSV or KML of hotspot point locations.</li>
+        </ol>
+        <h4>Tips</h4>
+        <ul class="list">
+          <li>Large areas may take longer; try raising threshold or drawing smaller areas.</li>
+          <li>CSV uses <code>lat, lon</code> coords — ready for Google Maps paste.</li>
+          <li>Spots are candidates — field-check for debris vs algae or foam.</li>
+        </ul>
+        <h4>Share</h4>
+        <p>Simply send this page link. No login is needed to use the app.</p>
+      </aside>
+    </div>
+
+    <footer>
+      Built with Google Earth Engine. This page can be re-used for any similar app by updating the App URL.
+    </footer>
+  </div>
+</body>
+</html>
