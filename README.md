@@ -53,11 +53,6 @@ It lets anyone draw an area of interest (AOI), run a simple satellite analysis, 
 ## 🌍 Deployment
 This site is hosted using **GitHub Pages**:
 
-1. Push `index.html` and `README.md` to your repo.
-2. In repo settings → **Pages** → set source to `main` branch `/root`.
-3. Your site will be available at:  
-   `https://<your-username>.github.io/`
-
 ---
 
 ## ⚠️ Notes & Limitations
