@@ -40,6 +40,8 @@ It lets anyone draw an area of interest (AOI), run a simple satellite analysis, 
 
 ---<img width="1918" height="899" alt="hotspot marker" src="https://github.com/user-attachments/assets/f76bc54a-ab22-4da5-b694-29a4afafc5c0" />
 
+<img width="1918" height="588" alt="EE hotspot detection" src="https://github.com/user-attachments/assets/4b2ae230-6a34-4a61-8379-ed098070f493" />
+
 
 ## 🛠️ Tech Stack
 - **Google Earth Engine** (satellite analysis + app logic)
