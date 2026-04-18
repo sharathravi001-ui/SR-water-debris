@@ -1,16 +1,20 @@
 import { useParams, Link } from 'react-router-dom'
 import { MapPin, Calendar, Home, ArrowLeft, Users } from 'lucide-react'
-import { properties } from '../data/properties'
+import { properties as mockProperties } from '../data/properties'
 import { builders } from '../data/builders'
 import PhotoGallery from '../components/property/PhotoGallery'
 import PropertyStats from '../components/property/PropertyStats'
 import PropertyMap from '../components/property/PropertyMap'
 import Badge from '../components/common/Badge'
 import StarRating from '../components/common/StarRating'
+import Spinner from '../components/common/Spinner'
+import { usePropertyDetail } from '../hooks/usePropertyDetail'
 
 export default function PropertyDetailPage() {
   const { id } = useParams()
-  const property = properties.find(p => p.id === id)
+  const { property, loading } = usePropertyDetail(id)
+
+  if (loading) return <Spinner text="Loading property details…" />
 
   if (!property) {
     return (
@@ -23,9 +27,9 @@ export default function PropertyDetailPage() {
 
   const builder = property.builderId ? builders.find(b => b.id === property.builderId) : null
 
-  // Compare with Resale: same city, lower or similar price, different listing type
+  // Compare with Resale: draw from mock data (sidebar comparables, not from API)
   const compareProps = property.listingType === 'New Construction'
-    ? properties
+    ? mockProperties
         .filter(p =>
           p.city === property.city &&
           p.listingType === 'Resale' &&
@@ -33,7 +37,7 @@ export default function PropertyDetailPage() {
           p.id !== property.id
         )
         .slice(0, 3)
-    : properties
+    : mockProperties
         .filter(p =>
           p.city === property.city &&
           p.listingType === 'New Construction' &&
