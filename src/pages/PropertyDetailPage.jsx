@@ -113,7 +113,13 @@ export default function PropertyDetailPage() {
         <div className="lg:w-80 flex-shrink-0 space-y-4">
           {/* Price card */}
           <div className="bg-white rounded-2xl border border-gray-100 shadow-sm p-5 sticky top-20">
-            <p className="text-3xl font-bold text-gray-900">${property.price.toLocaleString()}</p>
+            <p className="text-3xl font-bold text-gray-900">
+              {property.currency === 'CAD' ? 'C$' : '$'}{property.price.toLocaleString()}
+              {property.currency === 'CAD' && <span className="text-base font-normal text-gray-400 ml-1">CAD</span>}
+            </p>
+            {property.mlsNumber && (
+              <p className="text-xs text-gray-400 mt-0.5 font-mono">MLS# {property.mlsNumber}</p>
+            )}
             <PropertyStats beds={property.beds} baths={property.baths} sqft={property.sqft} garages={property.garages} size="md" />
             <div className="mt-4 space-y-2 text-sm text-gray-600 border-t border-gray-100 pt-4">
               {property.listingType === 'New Construction' ? (
@@ -162,7 +168,7 @@ export default function PropertyDetailPage() {
                   >
                     <img src={cp.images[0]} alt={cp.title} className="w-14 h-10 rounded-lg object-cover flex-shrink-0" />
                     <div className="min-w-0">
-                      <p className="text-sm font-bold text-gray-900">${cp.price.toLocaleString()}</p>
+                      <p className="text-sm font-bold text-gray-900">{cp.currency === 'CAD' ? 'C$' : '$'}{cp.price.toLocaleString()}</p>
                       <p className="text-xs text-gray-500 truncate">{cp.beds}bd · {cp.baths}ba · {cp.sqft.toLocaleString()} sqft</p>
                       <div className="flex items-center gap-1 mt-0.5">
                         <Badge label={cp.listingType} />

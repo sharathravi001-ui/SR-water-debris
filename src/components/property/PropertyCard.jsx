@@ -2,8 +2,14 @@ import { Link } from 'react-router-dom'
 import Badge from '../common/Badge'
 import PropertyStats from './PropertyStats'
 
+function formatPrice(price, currency) {
+  const symbol = currency === 'CAD' ? 'C$' : '$'
+  const suffix = currency === 'CAD' ? ' CAD' : ''
+  return `${symbol}${price.toLocaleString()}${suffix}`
+}
+
 export default function PropertyCard({ property }) {
-  const { id, title, address, city, state, price, beds, baths, sqft, garages, listingType, status, images } = property
+  const { id, title, address, city, state, country, price, currency, beds, baths, sqft, garages, listingType, status, images } = property
 
   return (
     <Link
@@ -20,13 +26,14 @@ export default function PropertyCard({ property }) {
         <div className="absolute top-3 left-3 flex gap-1.5 flex-wrap">
           <Badge label={listingType} />
           {status !== 'Active' && <Badge label={status} />}
+          {country === 'CA' && <Badge label="🇨🇦 Canada" />}
         </div>
       </div>
 
       <div className="p-4 flex flex-col gap-2 flex-1">
         <div className="flex items-start justify-between gap-2">
           <p className="font-bold text-xl text-gray-900">
-            ${price.toLocaleString()}
+            {formatPrice(price, currency)}
           </p>
         </div>
         <h3 className="font-semibold text-gray-800 text-sm line-clamp-2 leading-snug">{title}</h3>
